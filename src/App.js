@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "fontsource-roboto";
+import React from "react";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import Home from "./components/private/Home";
+import SignInSide from "./SignInSide";
 
-function App() {
+const App = () => {
+  let authentication = true;
+  let authorization = true;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {authentication && authorization ? <Home /> : <Redirect to={{ pathname: "/login" }} />}
+        </Route>
+        <Route path="/login">
+          {authentication && authorization ? <Redirect to={{ pathname: "/" }} /> : <SignInSide />}
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
