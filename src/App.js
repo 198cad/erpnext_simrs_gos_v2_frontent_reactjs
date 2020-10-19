@@ -1,24 +1,26 @@
-import "fontsource-roboto";
-import React from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import Home from "./components/private/Home";
-import SignInSide from "./SignInSide";
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-const App = () => {
-  let authentication = true;
-  let authorization = true;
+function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          {authentication && authorization ? <Home /> : <Redirect to={{ pathname: "/login" }} />}
-        </Route>
-        <Route path="/login">
-          {authentication && authorization ? <Redirect to={{ pathname: "/" }} /> : <SignInSide />}
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
-};
+}
 
 export default App;
